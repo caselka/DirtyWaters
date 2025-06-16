@@ -1,0 +1,40 @@
+# Dirty Waters Configuration File
+# WordPress Brute Force Tool for Ethical Security Testing
+
+# Target Configuration
+target_url: "http://dweb.onion/wp-login.php"  # WordPress login URL
+username: "admin"                            # Target username
+
+# Password Configuration
+password_file: "passwords.txt"               # Path to password list file
+
+# Tor Network Configuration
+proxy: "socks5h://127.0.0.1:9050"           # Tor SOCKS5 proxy
+control_port: 9051                           # Tor control port
+control_password: ""                         # Tor control password (leave empty if none)
+
+# Detection Configuration
+success_indicators:                          # Indicators of successful login
+  - "/wp-admin/"                            # Redirect to admin panel
+  - "wp-admin-bar"                          # Admin bar in HTML
+  - "dashboard"                             # Dashboard keyword
+
+failure_indicators:                          # Indicators of failed login
+  - "The password you entered for the username"  # Standard WP error message
+  - "Invalid username or password"          # Alternative error message
+  - "login_error"                           # Error class/ID
+
+# Network and Timing Configuration
+attempts_per_circuit: 10                     # New Tor circuit every N attempts
+rate_limit: 2                               # Seconds to wait between requests
+timeout: 30                                 # HTTP request timeout (seconds)
+
+# Advanced Configuration
+max_retries: 3                              # Maximum retry attempts for failed requests
+log_level: "INFO"                           # Logging level (DEBUG, INFO, WARNING, ERROR)
+user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"  # Custom User-Agent
+
+# Output Configuration
+log_file: "logs/dirty_waters.log"           # Log file path
+save_progress: true                         # Save progress for resuming
+progress_file: "logs/progress.json"         # Progress save file
