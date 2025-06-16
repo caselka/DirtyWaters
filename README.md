@@ -78,7 +78,6 @@ pip install requests[socks] stem pyyaml
 ```bash
 git clone https://github.com/caselka/DirtyWaters
 cd DirtyWaters
-pip install -r requirements.txt  # If included
 ```
 
 ---
