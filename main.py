@@ -76,8 +76,8 @@ def validate_environment() -> bool:
             return False
     
     # Check Python version
-    if sys.version_info < (3, 12):
-        print("ERROR: Python 3.12 or higher is required.")
+    if sys.version_info < (3, 8):
+        print("ERROR: Python 3.8 or higher is required.")
         print(f"Current version: {sys.version}")
         return False
     

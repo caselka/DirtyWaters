@@ -1,0 +1,32 @@
+# Test Configuration for Dirty Waters
+# This configuration is for testing basic functionality without Tor
+
+# Target Configuration
+target_url: "http://httpbin.org/post"  # Test endpoint that accepts POST requests
+username: "testuser"                   # Test username
+
+# Password Configuration
+password_file: "passwords.txt"         # Use existing password list
+
+# Tor Network Configuration (disabled for testing)
+proxy: ""                             # Empty proxy for direct connection testing
+control_port: 9051                     # Tor control port (not used in test)
+control_password: ""                   # Tor control password
+
+# Detection Configuration
+success_indicators:                    # Test success indicators
+  - "testuser"                        # Will appear in httpbin response
+  - "success"                         # Generic success indicator
+
+failure_indicators:                    # Test failure indicators
+  - "error"                          # Generic error indicator
+  - "failed"                         # Generic failure indicator
+
+# Network and Timing Configuration
+attempts_per_circuit: 5               # Lower for testing
+rate_limit: 1                         # Faster for testing
+timeout: 10                           # Shorter timeout for testing
+
+# Advanced Configuration
+max_retries: 2                        # Lower retries for testing
+log_level: "DEBUG"                    # More verbose logging for testing
