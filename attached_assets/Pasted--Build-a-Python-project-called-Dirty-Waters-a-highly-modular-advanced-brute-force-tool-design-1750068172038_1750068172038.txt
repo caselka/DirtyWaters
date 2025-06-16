@@ -1,0 +1,69 @@
+🔹 Build a Python project called “Dirty Waters” — a highly modular, advanced brute-force tool designed for ethical testing of WordPress login forms via the Tor network.
+
+🔹 Project structure:
+- `dirty_waters/`
+  - `__init__.py`
+  - `tor_controller.py` → Handles Tor control port (Stem), NEWNYM signals.
+  - `brute_forcer.py` → Main engine: reads config, loads passwords, performs requests via Tor SOCKS proxy, handles detection.
+  - `utils.py` → Logging, output formatting, retry handling.
+  - `config.yaml` → External config (target, user, proxy, circuit rotation, indicators, rate limits).
+  - `requirements.txt` → All required packages.
+- `README.md` → Complete usage guide: setup, dependencies, Tor config, ethics disclaimer.
+- `.gitignore` → Ignore venv, logs, caches, sensitive files.
+
+🔹 Features:
+- Use `requests[socks]` for HTTP requests through Tor SOCKS5 proxy.
+- Use `stem` to manage Tor circuits and control port.
+- Use `pyyaml` for config management.
+- Detect success by:
+  - HTTP redirect to `/wp-admin/`
+  - HTML containing `wp-admin-bar`
+- Detect failure by:
+  - HTML containing “The password you entered for the username”
+- Auto-switch Tor circuit every N attempts (from config).
+- Rate limiting per config (e.g. sleep X seconds between requests).
+- Timeout handling (configurable).
+- Logs each attempt to both stdout and file (`logs/dirty_waters.log`).
+- Keyboard interrupt-safe (clean exit, progress saved).
+- Final summary report on completion.
+- Minimal dependencies; clean, commented, production-quality code.
+- Ready to push to GitHub.
+
+🔹 Example `config.yaml`:
+```yaml
+target_url: "http://dweb.onion/wp-login.php"
+username: "smithbill"
+password_file: "500-worst-passwords.txt"
+proxy: "socks5h://127.0.0.1:9050"
+control_port: 9051
+control_password: ""  # optional
+success_indicators:
+  - "/wp-admin/"
+  - "wp-admin-bar"
+failure_indicators:
+  - "The password you entered for the username"
+attempts_per_circuit: 10
+rate_limit: 5
+timeout: 30
+
+ Deliver full code for:
+
+    tor_controller.py
+
+    brute_forcer.py
+
+    utils.py
+
+    config.yaml
+
+    requirements.txt
+
+    README.md
+
+    .gitignore
+
+🔹 All code must be clean, well-documented, Python 3.12+ compatible.
+
+🔹 Ethics disclaimer in README: for educational and authorized security testing only.
+
+🔹 Output code ready to paste into Replit and push to GitHub.
